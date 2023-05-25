@@ -24,17 +24,18 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+	<link rel="stylesheet" href="css\style.css">
 	<link rel="stylesheet" href="<?php echo INCLUDE_PATH; ?>estilo/font-awesome.min.css">
 	<link href="<?php echo INCLUDE_PATH_PAINEL ?>css/style.css" rel="stylesheet" />
 </head>
-<body>
+<body style="background-image: url('imagens/background/bgnovo.png');">
 
 	<div class="box-login">
 		<?php
 			if(isset($_POST['acao'])){
 				$user = $_POST['user'];
 				$password = $_POST['password'];
-				$sql = MySql::conectar()->prepare("SELECT * FROM `tb_admin.usuarios` WHERE user = ? AND password = ?");
+				$sql = MySql::conectar()->prepare("SELECT * FROM `USUARIOS_ADMIN` WHERE sNmUsuarioAdm = ? AND sDsSenha  = ?");
 				$sql->execute(array($user,$password));
 				if($sql->rowCount() == 1){
 					$info = $sql->fetch();
@@ -58,20 +59,38 @@
 				}
 			}
 		?>
-		<h2>Efetue o login:</h2>
-		<form method="post">
-			<input type="text" name="user" placeholder="Login..." required>
-			<input type="password" name="password" placeholder="Senha..." required>
-			<div class="form-group-login left">
-				<input type="submit" name="acao" value="Logar!">
-			</div>
-			<div class="form-group-login right">
-				<label>Lembrar-me</label>
-				<input type="checkbox" name="lembrar" />
-			</div>
-			<div class="clear"></div>
-		</form>
-	</div><!--box-login-->
+
+<div class="container">
+    <div class="content">
+    <div class="logo" ><img src="logo.png" alt=""></div>
+    <div class="texto">
+    <h1>Nós somos a <span>melhor</span> empresa para te atender!</h1>
+    <h1>O melhor <span>equipamento</span> e <span>atendimento</span> você encontra aqui!</h1>
+  </div><!-- container -->
+    </div><!-- content -->
+
+		
+<form method="post">
+	<div class="form">
+
+      <div class="title"><center><img src="logo.png" width="40%"><br>Login</div> 
+	  
+      <div class="subtitle"></div>
+      <div class="input-container ic1">
+        <input id="email" name="user" class="input" type="text" placeholder=" " />
+        <div class="cut"></div>
+        <label for="email" class="placeholder">Email</label>
+      </div>
+      <div class="input-container ic2">
+        <input id="senha" name="password" class="input" type="text" placeholder=" " />
+        <div class="cut"></div>
+        <label for="senha" class="placeholder">Senha</label>
+      </div>
+      <button type="text" class="submit" name="acao">Entrar</button>
+      <p align="right"><a href="cadastro.html"><font color="white">  Cadastre-se</a>  </p> </font>
+    </div>
+  </form>
 
 </body>
 </html>
+
